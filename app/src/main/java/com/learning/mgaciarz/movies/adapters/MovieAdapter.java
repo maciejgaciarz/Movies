@@ -9,21 +9,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.learning.mgaciarz.movies.R;
+import com.learning.mgaciarz.movies.RecyclerViewClickListener;
 import com.learning.mgaciarz.movies.models.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private List<Movie> movies;
     private Context context;
+    private static RecyclerViewClickListener itemListener;
 
     private String imageURL = "http://image.tmdb.org/t/p/w185/";
 
-    public MovieAdapter(List<Movie> movies, Context mContext) {
+    public MovieAdapter(List<Movie> movies, Context mContext, RecyclerViewClickListener listener) {
         this.movies = movies;
         this.context = mContext;
+        this.itemListener = listener;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
 
-    class MovieViewHolder extends RecyclerView.ViewHolder {
+    class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView textViewTitle, textViewShortDesc;
         ImageView imageView;
@@ -64,6 +68,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewShortDesc = itemView.findViewById(R.id.textViewShortDesc);
             imageView = itemView.findViewById(R.id.imageView);
+
+            itemView.setOnClickListener(this);
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            itemListener.recyclerViewListClicked(v, this.getAdapterPosition());
         }
     }
 }

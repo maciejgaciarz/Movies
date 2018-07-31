@@ -1,9 +1,11 @@
 package com.learning.mgaciarz.movies.activites;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.learning.mgaciarz.movies.adapters.MovieAdapter;
@@ -19,7 +21,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MovieListActivity extends AppCompatActivity {
+import com.learning.mgaciarz.movies.RecyclerViewClickListener;
+
+public class MovieListActivity extends AppCompatActivity  {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -41,7 +45,6 @@ public class MovieListActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "OnReponseSuccess",
                         Toast.LENGTH_SHORT).show();
 
-
                 JSONResult jsonResult = response.body();
 
 
@@ -55,12 +58,23 @@ public class MovieListActivity extends AppCompatActivity {
                 }
 
                 mRecyclerView = findViewById(R.id.movies_recycler_main);
-                mLayoutManager = new LinearLayoutManager(getApplicationContext());
 
+                mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 mRecyclerView.setLayoutManager(mLayoutManager);
 
-                mAdapter = new MovieAdapter(movies, getApplicationContext());
+                mAdapter = new MovieAdapter(movies, MovieListActivity.this, new RecyclerViewClickListener() {
+                    @Override
+                    public void recyclerViewListClicked(View v, int position) {
+
+                        //todo:
+                        //pass movies.get(position) to SingleMovieActivity
+                        //design layout
+
+                    }
+                });
                 mRecyclerView.setAdapter(mAdapter);
+
+
             }
 
             @Override
@@ -70,6 +84,10 @@ public class MovieListActivity extends AppCompatActivity {
             }
         };
         new Downloader(getApplicationContext()).getMoviesService().getPopularMovies().enqueue(responseCallback);
+
+
+
+
 
     }
 }
