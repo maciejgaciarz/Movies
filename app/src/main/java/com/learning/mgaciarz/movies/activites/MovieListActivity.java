@@ -1,6 +1,7 @@
 package com.learning.mgaciarz.movies.activites;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,25 +67,27 @@ public class MovieListActivity extends AppCompatActivity  {
                     @Override
                     public void recyclerViewListClicked(View v, int position) {
 
-                        //todo:
-                        //pass movies.get(position) to SingleMovieActivity
-                        //design layout
+
+                        Intent i = new Intent(MovieListActivity.this, SingleMovieActivity.class);
+
+                        Movie clickedMovie = movies.get(position);
+
+                        i.putExtra("clickedMovie", clickedMovie);
+
+                        startActivity(i);
 
                     }
                 });
                 mRecyclerView.setAdapter(mAdapter);
-
-
             }
 
             @Override
             public void onFailure(Call<JSONResult> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "OnReponseFailed " + t.getMessage(),
+                Toast.makeText(getApplicationContext(), "OnResponseFailed " + t.getMessage(),
                         Toast.LENGTH_LONG).show();
             }
         };
         new Downloader(getApplicationContext()).getMoviesService().getPopularMovies().enqueue(responseCallback);
-
 
 
 

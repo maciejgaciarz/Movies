@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/baseline_home_black_24dp"
+        android:title="@string/nav_movInfo" />
+    <item
+        android:icon="@drawable/baseline_assessment_black_24dp"
+        android:title="@string/nav_movStats" />
+    <item
+        android:icon="@drawable/baseline_accessibility_black_24dp"
+        android:title="@string/nav_movReponse" />
+</menu>

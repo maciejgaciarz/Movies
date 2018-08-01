@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Movies</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="nav_movInfo">Info</string>
+    <string name="nav_movStats">Stats</string>
+    <string name="nav_movReponse">Reponse</string>
 </resources>

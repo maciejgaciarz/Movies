@@ -16,9 +16,9 @@ import com.learning.mgaciarz.movies.R;
 public class MainActivity extends AppCompatActivity {
 
 
-    private Button searchButton;
-    private Button popularMoviesButton;
-    private EditText movieTitleEditText;
+    Button searchButton;
+    Button popularMoviesButton;
+    EditText movieTitleEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
