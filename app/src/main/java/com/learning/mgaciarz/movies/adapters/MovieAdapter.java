@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.learning.mgaciarz.movies.R;
-import com.learning.mgaciarz.movies.RecyclerViewClickListener;
+import com.learning.mgaciarz.movies.IRecyclerViewClickListener;
 import com.learning.mgaciarz.movies.models.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -20,14 +20,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     private List<Movie> movies;
     private Context context;
-    private static RecyclerViewClickListener itemListener;
+    private static IRecyclerViewClickListener itemListener;
 
     private String imageURL = "http://image.tmdb.org/t/p/w185/";
 
-    public MovieAdapter(List<Movie> movies, Context mContext, RecyclerViewClickListener listener) {
+    public MovieAdapter(List<Movie> movies, Context mContext, IRecyclerViewClickListener listener) {
         this.movies = movies;
         this.context = mContext;
-        this.itemListener = listener;
+        itemListener = listener;
     }
 
     @Override

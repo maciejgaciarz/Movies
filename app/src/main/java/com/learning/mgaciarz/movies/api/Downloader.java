@@ -2,7 +2,6 @@ package com.learning.mgaciarz.movies.api;
 
 import android.content.Context;
 
-import com.learning.mgaciarz.movies.BuildConfig;
 import com.learning.mgaciarz.movies.R;
 
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class Downloader {
         this.API_KEY = context.getResources().getString(R.string.api_key);
     }
 
-    public MoviesService getMoviesService( ) {
+    public IMoviesService getMoviesService( ) {
 
         //intercept the call to add api_key
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -52,7 +51,7 @@ public class Downloader {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        MoviesService service = retrofit.create(MoviesService.class);
+        IMoviesService service = retrofit.create(IMoviesService.class);
 
         return service;
     }
@@ -91,7 +90,7 @@ public class Downloader {
                 .build();
 
 
-        MoviesService service = retrofit.create(MoviesService.class);
+        IMoviesService service = retrofit.create(IMoviesService.class);
 
         service.getMovie(name);
     }

@@ -1,6 +1,5 @@
 package com.learning.mgaciarz.movies.activites;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,9 +21,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import com.learning.mgaciarz.movies.RecyclerViewClickListener;
+import com.learning.mgaciarz.movies.IRecyclerViewClickListener;
 
-public class MovieListActivity extends AppCompatActivity  {
+public class MovieListActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -43,7 +42,7 @@ public class MovieListActivity extends AppCompatActivity  {
             @Override
             public void onResponse(Call<JSONResult> call, Response<JSONResult> response) {
 
-                Toast.makeText(getApplicationContext(), "OnReponseSuccess",
+                Toast.makeText(getApplicationContext(), "OnResponseSuccess",
                         Toast.LENGTH_SHORT).show();
 
                 JSONResult jsonResult = response.body();
@@ -51,9 +50,7 @@ public class MovieListActivity extends AppCompatActivity  {
 
                 if (jsonResult != null) {
                     movies = new ArrayList<>(jsonResult.getResults());
-                }
-                else
-                {
+                } else {
                     Toast.makeText(getApplicationContext(), "jsonResult = response.body() is null",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -63,16 +60,17 @@ public class MovieListActivity extends AppCompatActivity  {
                 mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 mRecyclerView.setLayoutManager(mLayoutManager);
 
-                mAdapter = new MovieAdapter(movies, MovieListActivity.this, new RecyclerViewClickListener() {
+                mAdapter = new MovieAdapter(movies, MovieListActivity.this, new IRecyclerViewClickListener() {
                     @Override
                     public void recyclerViewListClicked(View v, int position) {
-
 
                         Intent i = new Intent(MovieListActivity.this, SingleMovieActivity.class);
 
                         Movie clickedMovie = movies.get(position);
 
                         i.putExtra("clickedMovie", clickedMovie);
+                        i.putExtra("TestValueString", "TestStringValueName");
+                        i.putExtra("TestValueInt", "TestValueIntName");
 
                         startActivity(i);
 
@@ -88,8 +86,6 @@ public class MovieListActivity extends AppCompatActivity  {
             }
         };
         new Downloader(getApplicationContext()).getMoviesService().getPopularMovies().enqueue(responseCallback);
-
-
 
 
     }

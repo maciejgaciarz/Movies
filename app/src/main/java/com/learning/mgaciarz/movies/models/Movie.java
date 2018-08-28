@@ -1,4 +1,5 @@
 package com.learning.mgaciarz.movies.models;
+import java.util.ArrayList;
 import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -62,11 +63,10 @@ public class Movie implements Parcelable
         }
 
         public Movie[] newArray(int size) {
-            return (new Movie[size]);
+            return new Movie[size];
         }
 
-    }
-            ;
+    };
 
     protected Movie(Parcel in) {
         this.voteCount = ((Integer) in.readValue((Integer.class.getClassLoader())));
@@ -78,12 +78,14 @@ public class Movie implements Parcelable
         this.posterPath = ((String) in.readValue((String.class.getClassLoader())));
         this.originalLanguage = ((String) in.readValue((String.class.getClassLoader())));
         this.originalTitle = ((String) in.readValue((String.class.getClassLoader())));
+        genreIds = new ArrayList<Integer>();
         in.readList(this.genreIds, (java.lang.Integer.class.getClassLoader()));
         this.backdropPath = ((String) in.readValue((String.class.getClassLoader())));
         this.adult = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
         this.overview = ((String) in.readValue((String.class.getClassLoader())));
         this.releaseDate = ((String) in.readValue((String.class.getClassLoader())));
     }
+
 
     public Movie() {
     }

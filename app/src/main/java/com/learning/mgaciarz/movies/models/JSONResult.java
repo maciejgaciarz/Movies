@@ -24,7 +24,6 @@ public class JSONResult implements Parcelable
     private List<Movie> results = null;
     public final static Parcelable.Creator<JSONResult> CREATOR = new Creator<JSONResult>() {
 
-
         @SuppressWarnings({
                 "unchecked"
         })
