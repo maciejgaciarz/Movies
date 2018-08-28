@@ -78,7 +78,7 @@ public class Movie implements Parcelable
         this.posterPath = ((String) in.readValue((String.class.getClassLoader())));
         this.originalLanguage = ((String) in.readValue((String.class.getClassLoader())));
         this.originalTitle = ((String) in.readValue((String.class.getClassLoader())));
-        genreIds = new ArrayList<Integer>();
+        genreIds = new ArrayList<>();
         in.readList(this.genreIds, (java.lang.Integer.class.getClassLoader()));
         this.backdropPath = ((String) in.readValue((String.class.getClassLoader())));
         this.adult = ((Boolean) in.readValue((Boolean.class.getClassLoader())));

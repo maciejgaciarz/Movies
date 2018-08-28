@@ -29,7 +29,7 @@ public class SingleMovieActivity extends AppCompatActivity {
         if(bundle.containsKey("clickedMovie")){
         Movie movie = bundle.getParcelable("clickedMovie");
         setTitle(movie.getTitle());
-        
+
         }
         else{
             //todo: go to error screen "something went wrong please try again"
