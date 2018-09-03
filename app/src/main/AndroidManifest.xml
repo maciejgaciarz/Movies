@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activites.SingleMovieActivity"></activity>
+        <activity android:name=".activites.ErrorActivity" />
     </application>
 
 </manifest>

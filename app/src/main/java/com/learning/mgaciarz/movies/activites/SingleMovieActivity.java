@@ -32,7 +32,8 @@ public class SingleMovieActivity extends AppCompatActivity {
 
         }
         else{
-            //todo: go to error screen "something went wrong please try again"
+            Intent i = new Intent(this,ErrorActivity.class);
+            startActivity(i);
         }
 
 
