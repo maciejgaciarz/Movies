@@ -51,8 +51,8 @@ public class MovieListActivity extends AppCompatActivity {
                 if (jsonResult != null) {
                     movies = new ArrayList<>(jsonResult.getResults());
                 } else {
-                    Toast.makeText(getApplicationContext(), "jsonResult = response.body() is null",
-                            Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MovieListActivity.this, SingleMovieActivity.class);
+                    startActivity(i);
                 }
 
                 mRecyclerView = findViewById(R.id.movies_recycler_main);
@@ -69,8 +69,6 @@ public class MovieListActivity extends AppCompatActivity {
                         Movie clickedMovie = movies.get(position);
 
                         i.putExtra("clickedMovie", clickedMovie);
-                        i.putExtra("TestValueString", "TestStringValueName");
-                        i.putExtra("TestValueInt", "TestValueIntName");
 
                         startActivity(i);
 
@@ -81,8 +79,8 @@ public class MovieListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<JSONResult> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "OnResponseFailed " + t.getMessage(),
-                        Toast.LENGTH_LONG).show();
+                Intent i = new Intent(MovieListActivity.this, ErrorActivity.class);
+                startActivity(i);
             }
         };
         new Downloader(getApplicationContext()).getMoviesService().getPopularMovies().enqueue(responseCallback);
